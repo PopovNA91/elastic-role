@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include elastic"
+    - name: "Include elastic-role"
       include_role:
-        name: "elastic"
+        name: "elastic-role"
