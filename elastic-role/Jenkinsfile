@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        label 'linux'
+    }
+    stages{
+        stage('Checkout'){
+            steps{
+                git credentialsId: 'f2455b05-8fad-4529-a194-41ba0ebff4da', url: 'git@github.com:PopovNA91/elastic-role.git'
+            }
+        }
+        stage('Install molecule'){
+            steps{
+                sh 'cd elastic-role && pip3 install -r test-requirements.txt'
+            }
+        }    
+        stage('Run molecule'){
+            steps{
+                sh 'cd elastic-role && molecule test'
+            }
+        }
+    }
+}
